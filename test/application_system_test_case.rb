@@ -9,7 +9,7 @@ Capybara.register_driver :chrome_shim do |app|
   Capybara::Selenium::Driver.new(
      app,
      browser: :chrome,
-     desired_capabilities: Selenium::WebDriver::Remote::Capabilities.chrome(chrome_opts)
+     desired_capabilities: Selenium::WebDriver.for(:chrome, options: chrome_opts)
   )
 end
 
