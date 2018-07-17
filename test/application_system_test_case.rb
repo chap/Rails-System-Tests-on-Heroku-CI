@@ -1,6 +1,6 @@
 require "test_helper"
 
-hrome_bin = ENV.fetch('GOOGLE_CHROME_SHIM', nil)
+chrome_bin = ENV.fetch('GOOGLE_CHROME_SHIM', nil)
 chrome_opts = chrome_bin ? { "chromeOptions" => { "binary" => chrome_bin } } : {}
 Capybara.register_driver :chrome_shim do |app|
   Capybara::Selenium::Driver.new(
