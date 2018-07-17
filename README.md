@@ -32,7 +32,7 @@ Define new Capybara driver that uses buildpack's Chrome binaries during a Heroku
 chrome_bin  = ENV.fetch('GOOGLE_CHROME_SHIM', nil)
 chrome_opts = chrome_bin ? { "chromeOptions" => { "binary" => chrome_bin } } : {}
 
-Capybara.register_driver :chrome do |app|
+Capybara.register_driver :chrome_shim do |app|
   Capybara::Selenium::Driver.new(
      app,
      browser: :chrome,
@@ -40,10 +40,10 @@ Capybara.register_driver :chrome do |app|
   )
 end
 
-Capybara.javascript_driver = :chrome
+Capybara.javascript_driver = :chrome_shim
 
 class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
-  driven_by :chrome
+  driven_by :chrome_shim
 end
 ```
 
