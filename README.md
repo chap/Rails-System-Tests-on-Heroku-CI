@@ -1,53 +1,24 @@
-# Rails System Tests on Heroku CI
+# README
 
-## Create an `app.json` file
+This README would normally document whatever steps are necessary to get the
+application up and running.
 
-Define your `test` script and include Chrome buildpacks:
-```
-{
-  "environments": {
-    "test": {
-      "addons": [
-        "heroku-postgresql"
-      ],
-      "scripts": {
-        "test": "rails test:system"
-      },
-      "buildpacks": [
-        { "url": "heroku/ruby" },
-        { "url": "https://github.com/heroku/heroku-buildpack-google-chrome" },
-        { "url": "https://github.com/heroku/heroku-buildpack-chromedriver" }
-      ]
-    }
-  }
-}
-```
+Things you may want to cover:
 
-## Update `test/application_system_test_case.rb`
+* Ruby version
 
-Define new Capybara driver that uses buildpack's Chrome binaries during a Heroku CI run:
+* System dependencies
 
-```
-# tell Heroku CI run where to find chrome binary
-chrome_bin  = ENV.fetch('GOOGLE_CHROME_SHIM', nil)
-chrome_opts = chrome_bin ? { "chromeOptions" => { "binary" => chrome_bin } } : {}
+* Configuration
 
-Capybara.register_driver :chrome do |app|
-  Capybara::Selenium::Driver.new(
-     app,
-     browser: :chrome,
-     desired_capabilities: Selenium::WebDriver::Remote::Capabilities.chrome(chrome_opts)
-  )
-end
+* Database creation
 
-Capybara.javascript_driver = :chrome
+* Database initialization
 
-class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
-  driven_by :chrome
-end
-```
+* How to run the test suite
 
-## More resources
+* Services (job queues, cache servers, search engines, etc.)
 
-- https://devcenter.heroku.com/articles/heroku-ci
-- https://devcenter.heroku.com/articles/heroku-ci-browser-and-user-acceptance-testing-uat
+* Deployment instructions
+
+* ...

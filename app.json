@@ -1,4 +1,5 @@
 {
+  "name": "rails-five-two-oh",
   "environments": {
     "test": {
       "addons": [
