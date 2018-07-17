@@ -29,6 +29,7 @@ Define new Capybara driver that uses buildpack's Chrome binaries during a Heroku
 
 ```
 # tell Heroku CI run where to find chrome binary
+# https://github.com/heroku/heroku-buildpack-google-chrome#selenium
 chrome_bin  = ENV.fetch('GOOGLE_CHROME_SHIM', nil)
 chrome_opts = chrome_bin ? { "chromeOptions" => { "binary" => chrome_bin } } : {}
 
@@ -49,7 +50,7 @@ end
 
 ## 3. Lock `selenium-webdriver` to `3.12.0`:
 
-Related to [a recent config change in chromedriver](https://github.com/SeleniumHQ/selenium/issues/6143) that's not yet working nicely yet.
+Related to [a recent config change in chromedriver](https://github.com/SeleniumHQ/selenium/issues/6143) that's not yet working nicely.
 
 
 ```
