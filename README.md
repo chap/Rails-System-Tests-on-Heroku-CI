@@ -49,7 +49,7 @@ end
 
 ## 3. Lock `selenium-webdriver` to `3.12.0`:
 
-Related to [a recent config change in chromdriver](https://github.com/SeleniumHQ/selenium/issues/6143) that's not yet working nicely yet.
+Related to [a recent config change in chromedriver](https://github.com/SeleniumHQ/selenium/issues/6143) that's not yet working nicely yet.
 
 
 ```
