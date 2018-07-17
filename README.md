@@ -1,6 +1,6 @@
 # Rails System Tests on Heroku CI
 
-## Create an `app.json` file
+## 1. Create an `app.json` file
 
 Define your `test` script and include Chrome buildpacks:
 ```
@@ -23,7 +23,7 @@ Define your `test` script and include Chrome buildpacks:
 }
 ```
 
-## Update `test/application_system_test_case.rb`
+## 2. Update `test/application_system_test_case.rb`
 
 Define new Capybara driver that uses buildpack's Chrome binaries during a Heroku CI run:
 
@@ -45,6 +45,19 @@ Capybara.javascript_driver = :chrome
 class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
   driven_by :chrome
 end
+```
+
+## 3. Lock `selenium-webdriver` to `3.12.0`:
+
+Related to [a recent config change in chromdriver](https://github.com/SeleniumHQ/selenium/issues/6143) that's not yet working nicely yet.
+
+
+```
+# Gemfile
+
+group :test do
+  gem 'selenium-webdriver', '3.12.0'
+  ...
 ```
 
 ## More resources
