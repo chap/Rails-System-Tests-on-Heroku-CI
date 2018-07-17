@@ -1,11 +1,8 @@
 # Rails System Tests on Heroku CI
 
-- https://devcenter.heroku.com/articles/heroku-ci
-- https://devcenter.heroku.com/articles/heroku-ci-browser-and-user-acceptance-testing-uat
-
 ## Create an `app.json` file
 
-Define your `test` script and include special chrome buildpacks:
+Define your `test` script and include Chrome buildpacks:
 ```
 {
   "environments": {
@@ -28,13 +25,13 @@ Define your `test` script and include special chrome buildpacks:
 
 ## Update `test/application_system_test_case.rb`
 
-Define new Capybara driver that uses chrome and uses the buildpack's binaries during a Heroku CI run:
+Define new Capybara driver that uses buildpack's Chrome binaries during a Heroku CI run:
 
 ```
 # tell Heroku CI run where to find chrome binary
 chrome_bin = ENV.fetch('GOOGLE_CHROME_SHIM', nil)
 chrome_opts = chrome_bin ? { "chromeOptions" => { "binary" => chrome_bin } } : {}
-Capybara.register_driver :chrome_shim do |app|
+Capybara.register_driver :chrome do |app|
   Capybara::Selenium::Driver.new(
      app,
      browser: :chrome,
@@ -44,6 +41,11 @@ end
 Capybara.javascript_driver = :chrome_shim
 
 class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
-  driven_by :chrome_shim
+  driven_by :chrome
 end
 ```
+
+## More resources
+
+- https://devcenter.heroku.com/articles/heroku-ci
+- https://devcenter.heroku.com/articles/heroku-ci-browser-and-user-acceptance-testing-uat
