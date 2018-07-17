@@ -1,5 +1,5 @@
 require "test_helper"
 
 class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
-  driven_by :chrome_shim_test
+  driven_by :new_chrome
 end
