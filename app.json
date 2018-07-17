@@ -5,7 +5,7 @@
         "heroku-postgresql"
       ],
       "scripts": {
-        "test-steup": "env",
+        "test-setup": "env",
         "test": "rails test:system"
       },
       "buildpacks": [
