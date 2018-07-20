@@ -2,7 +2,8 @@
   "environments": {
     "test": {
       "addons": [
-        "heroku-postgresql"
+        "heroku-postgresql",
+        "graphenedb"
       ],
       "scripts": {
         "test-setup": "env",
